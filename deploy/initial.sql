@@ -7,4 +7,4 @@ create table abc (a int);
 
 commit;
 
-create index pgbench_accounts_no_concurrently.idx on pgbench_accounts (bid);
+create index pgbench_accounts_no_concurrently_idx on pgbench_accounts (bid);
