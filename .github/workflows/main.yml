@@ -18,6 +18,7 @@ jobs:
             DATABASE_LAB_CI=true
             FLYWAY_LOCATIONS=filesystem:/flyway/sql
             FLYWAY_CONNECT_RETRIES=60
+            FLYWAY_BASELINE_ON_MIGRATE=true
         env:
           CI_ENDPOINT: ${{ secrets.CI_ENDPOINT }}
           SECRET_TOKEN: ${{ secrets.SECRET_TOKEN }}
