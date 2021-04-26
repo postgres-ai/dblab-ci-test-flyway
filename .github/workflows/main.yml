@@ -19,7 +19,7 @@ jobs:
             DATABASE_LAB_CI=true
             FLYWAY_USER=${PGUSER}
             FLYWAY_PASSWORD=${PGPASSWORD}
-            FLYWAY_URL=jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
+            FLYWAY_URL=jdbc:postgresql://"${PGHOST}":"${PGPORT}"/"${PGDATABASE}"
             FLYWAY_LOCATIONS=filesystem:/flyway/sql
             FLYWAY_CONNECT_RETRIES=60
         env:
