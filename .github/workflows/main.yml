@@ -11,7 +11,6 @@ jobs:
         with:
           dbname: test
           commands:  |
-            env
             flyway -url=jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE} -user=${PGUSER} -password=${PGPASSWORD} -locations=filesystem:/repo/flyway/sql migrate
             flyway -url=jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE} -user=${PGUSER} -password=${PGPASSWORD} -locations=filesystem:/repo/flyway/sql info
           migration_envs: |
