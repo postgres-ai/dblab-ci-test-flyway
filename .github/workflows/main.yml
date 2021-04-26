@@ -12,11 +12,10 @@ jobs:
           dbname: test
           commands:  |
             env
-            flyway -url=jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE} -user=${PGUSER} -password=${PGPASSWORD} migrate
-            flyway -url=jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE} -user=${PGUSER} -password=${PGPASSWORD} info
+            flyway -url=jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE} -user=${PGUSER} -password=${PGPASSWORD} -locations=filesystem:/flyway/sql migrate
+            flyway -url=jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE} -user=${PGUSER} -password=${PGPASSWORD} -locations=filesystem:/flyway/sql info
           migration_envs: |
             DATABASE_LAB_CI=true
-            FLYWAY_LOCATIONS=filesystem:./flyway/sql
             FLYWAY_CONNECT_RETRIES=60
             FLYWAY_BASELINE_ON_MIGRATE=true
         env:
