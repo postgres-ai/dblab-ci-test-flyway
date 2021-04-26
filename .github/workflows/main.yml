@@ -12,9 +12,8 @@ jobs:
           dbname: test
           commands:  |
             env
-            sleep 300s
-            flyway -url=jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE} -user=${PGUSER} -password=${PGPASSWORD} -locations=filesystem:/flyway/sql migrate
-            flyway -url=jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE} -user=${PGUSER} -password=${PGPASSWORD} -locations=filesystem:/flyway/sql info
+            flyway -url=jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE} -user=${PGUSER} -password=${PGPASSWORD} -locations=filesystem:/repo/flyway/sql migrate
+            flyway -url=jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE} -user=${PGUSER} -password=${PGPASSWORD} -locations=filesystem:/repo/flyway/sql info
           migration_envs: |
             DATABASE_LAB_CI=true
             FLYWAY_CONNECT_RETRIES=60
