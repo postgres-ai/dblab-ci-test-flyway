@@ -17,8 +17,8 @@ jobs:
             echo 'Migration has been completed'
           migration_envs: |
             DATABASE_LAB_CI=true
-            FLYWAY_USER=${PGUSER}
-            FLYWAY_PASSWORD=${PGPASSWORD}
+            FLYWAY_USER=$PGUSER
+            FLYWAY_PASSWORD=$PGPASSWORD
             FLYWAY_LOCATIONS=filesystem:/flyway/sql
             FLYWAY_CONNECT_RETRIES=60
         env:
