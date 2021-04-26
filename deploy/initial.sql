@@ -2,5 +2,3 @@
 
 create table abc (a int);
 
-create table test ();
-
