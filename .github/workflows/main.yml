@@ -11,10 +11,10 @@ jobs:
         with:
           dbname: test
           commands:  |
+            env
             flyway migrate
             flyway info
             echo 'Migration has been completed'
-            env
           migration_envs: |
             DATABASE_LAB_CI=true
             FLYWAY_USER=${PGUSER}
