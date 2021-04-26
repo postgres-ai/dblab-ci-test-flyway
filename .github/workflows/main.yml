@@ -16,7 +16,7 @@ jobs:
             flyway -url=jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE} -user=${PGUSER} -password=${PGPASSWORD} info
           migration_envs: |
             DATABASE_LAB_CI=true
-            FLYWAY_LOCATIONS=filesystem:/flyway/sql
+            FLYWAY_LOCATIONS=filesystem:./flyway/sql
             FLYWAY_CONNECT_RETRIES=60
             FLYWAY_BASELINE_ON_MIGRATE=true
         env:
