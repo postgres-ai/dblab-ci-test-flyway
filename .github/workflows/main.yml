@@ -11,11 +11,17 @@ jobs:
         with:
           dbname: test
           commands:  |
-            sqitch deploy
-            env
+            flyway migrate
+            flyway info
             echo 'Migration has been completed'
+            env
           migration_envs: |
             DATABASE_LAB_CI=true
+            FLYWAY_USER=${PGUSER}
+            FLYWAY_PASSWORD=${PGPASSWORD}
+            FLYWAY_URL=jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
+            FLYWAY_LOCATIONS=filesystem:/flyway/sql
+            FLYWAY_CONNECT_RETRIES=60
         env:
           CI_ENDPOINT: ${{ secrets.CI_ENDPOINT }}
           SECRET_TOKEN: ${{ secrets.SECRET_TOKEN }}
