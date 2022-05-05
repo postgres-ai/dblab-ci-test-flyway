@@ -5,8 +5,13 @@ jobs:
     runs-on: ubuntu-latest
     name: CI migration
     steps:
-      - name: Check database migrations with DLE
-        uses: postgres-ai/migration-ci-action@v0.1.1
+      # Checkout the source code
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Run DB migrations with the public action
+      - name: DB migrations checker with DLE
+        uses: postgres-ai/dle-github-actions@v0.1.1
         id: db-migrations
         with:
           dbname: test
@@ -17,9 +22,23 @@ jobs:
             DATABASE_LAB_CI=true
             FLYWAY_CONNECT_RETRIES=60
             FLYWAY_BASELINE_ON_MIGRATE=true
+          download_artifacts: false
+          observation_interval: "1"
+          max_lock_duration: "1"
+          max_duration: "600"
         env:
           DLMC_CI_ENDPOINT: ${{ secrets.DLMC_CI_ENDPOINT }}
           DLMC_VERIFICATION_TOKEN: ${{ secrets.DLMC_VERIFICATION_TOKEN }}
 
+      # Download artifacts
+#      - name: Upload artifacts
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: artifacts
+#          path: artifacts/*
+#          if-no-files-found: ignore
+#        if: always()
+
+      # Show migration summary
       - name: Get the response status
         run: echo "${{ steps.db-migration.outputs.response }}"
