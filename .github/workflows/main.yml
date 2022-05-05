@@ -16,12 +16,13 @@ jobs:
         with:
           dbname: test
           commands:  |
-            flyway -url=jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE} -user=${PGUSER} -password=${PGPASSWORD} -locations=filesystem:/repo/flyway/sql migrate
-            flyway -url=jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE} -user=${PGUSER} -password=${PGPASSWORD} -locations=filesystem:/repo/flyway/sql info
+            flyway -url=jdbc:postgresql://${DLE_HOST}:${PGPORT}/${PGDATABASE} -user=${PGUSER} -password=${PGPASSWORD} -locations=filesystem:/repo/flyway/sql migrate
+            flyway -url=jdbc:postgresql://${DLE_HOST}:${PGPORT}/${PGDATABASE} -user=${PGUSER} -password=${PGPASSWORD} -locations=filesystem:/repo/flyway/sql info
           migration_envs: |
             DATABASE_LAB_CI=true
             FLYWAY_CONNECT_RETRIES=60
             FLYWAY_BASELINE_ON_MIGRATE=true
+            DLE_HOST=172.17.0.1
           download_artifacts: true
           observation_interval: "1"
           max_lock_duration: "1"
