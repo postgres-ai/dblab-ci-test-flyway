@@ -22,7 +22,7 @@ jobs:
             DATABASE_LAB_CI=true
             FLYWAY_CONNECT_RETRIES=60
             FLYWAY_BASELINE_ON_MIGRATE=true
-          download_artifacts: false
+          download_artifacts: true
           observation_interval: "1"
           max_lock_duration: "1"
           max_duration: "600"
@@ -31,13 +31,13 @@ jobs:
           DLMC_VERIFICATION_TOKEN: ${{ secrets.DLMC_VERIFICATION_TOKEN }}
 
       # Download artifacts
-#      - name: Upload artifacts
-#        uses: actions/upload-artifact@v2
-#        with:
-#          name: artifacts
-#          path: artifacts/*
-#          if-no-files-found: ignore
-#        if: always()
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifacts
+          path: artifacts/*
+          if-no-files-found: ignore
+        if: always()
 
       # Show migration summary
       - name: Get the response status
