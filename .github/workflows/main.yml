@@ -42,4 +42,4 @@ jobs:
 
       # Show migration summary
       - name: Get the response status
-        run: echo "${{ steps.db-migration.outputs.response }}"
+        run: echo "${{ steps.db-migrations.outputs.response }}"
