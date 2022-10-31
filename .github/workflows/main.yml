@@ -1,4 +1,10 @@
-on: [ push ]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
   migration_job:
@@ -12,7 +18,7 @@ jobs:
       # Run DB migrations with the public action
       - name: DB migrations checker with DLE
         #uses: postgres-ai/dle-github-actions@v0.1.1
-        uses: agneum/migration-action@composite-action
+        uses: postgres-ai/dle-github-actions@master
         id: db-migrations
         with:
           dbname: test
